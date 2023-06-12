@@ -41,7 +41,7 @@ def print_predictions(preds):
 
 model = load_model()
 st.title('Распознование изображений в облаке STREAMLIT')
-st.markdown('Проект по программной инженерии**')
+st.markdown('Проект по программной инженерии')
 st.text('Антропова Н.Г.')
 
 img = load_image()
@@ -50,6 +50,6 @@ if result:
     with st.spinner('Подождите немного...'):
         x = preprocess_image(img)
         preds = model.predict(x)
-        st.write('Результат -->')
+        st.write('Результат:')
         print_predictions(preds)
     st.success('Готово!')
