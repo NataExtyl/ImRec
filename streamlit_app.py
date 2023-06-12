@@ -1,4 +1,5 @@
 import io
+
 import numpy as np
 import streamlit as st
 from PIL import Image
@@ -6,10 +7,9 @@ from tensorflow.keras.applications import EfficientNetB0
 from tensorflow.keras.applications.efficientnet import preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
 
+
 st.cache_resource()
 
-
-# allow_output_mutation=True
 
 def load_model():
     return EfficientNetB0(weights='imagenet')
@@ -47,7 +47,7 @@ st.text('Антропова Н.Г.')
 img = load_image()
 result = st.button('Распознать изображение')
 if result:
-    with st.spinner('Подождите немного...'):
+    with st.spinner('Подождите...'):
         x = preprocess_image(img)
         preds = model.predict(x)
         st.write('Результат:')
