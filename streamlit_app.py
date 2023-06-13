@@ -4,9 +4,11 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 from tensorflow.keras.applications import EfficientNetB0
-from tensorflow.keras.applications.efficientnet import preprocess_input, decode_predictions
+from tensorflow.keras.applications.efficientnet import (
+    preprocess_input,
+    decode_predictions,
+)
 from tensorflow.keras.preprocessing import image
-
 
 st.cache_resource()
 
@@ -24,7 +26,8 @@ def preprocess_image(img):
 
 
 def load_image():
-    uploaded_file = st.file_uploader(label='Выберите изображение для распознавания ')
+    label = 'Выберите изображение для распознавания '
+    uploaded_file = st.file_uploader(label=label)
     if uploaded_file is not None:
         image_data = uploaded_file.getvalue()
         st.image(image_data)
