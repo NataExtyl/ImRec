@@ -6,7 +6,8 @@ from streamlit_app import load_model, preprocess_image, print_predictions
 
 def test_load_model():
     model = load_model()
-    assert isinstance(model, EfficientNetB0), "Model loading failed, not instance of EfficientNetB0"
+    err_msg = "Model loading failed, not instance of EfficientNetB0"
+    assert isinstance(model, EfficientNetB0), err_msg
 
 
 def test_preprocess_image():
@@ -14,7 +15,8 @@ def test_preprocess_image():
     data = np.random.randint(0, 256, (300, 300, 3), dtype=np.uint8)
     img = Image.fromarray(data)
     processed_image = preprocess_image(img)
-    assert processed_image.shape == (1, 224, 224, 3), "Preprocess image function is not working correctly"
+    err_msg = "Preprocess image function is not working correctly"
+    assert processed_image.shape == (1, 224, 224, 3), err_msg
 
 
 def test_print_predictions():
