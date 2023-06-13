@@ -17,21 +17,21 @@
  ```python
  class WhoAmI:
     user = 'NataAntro'
-    current_work = ('URFU Student, AI/ML Engineer, QA Specialist (Extyl-pro.ru),'
+    current_adventure = ('URFU Student, AI/ML Engineer, QA Specialist (Extyl-pro.ru),'
                     'Metaverse Researcher, Digital artist')
-    hobbies = [
+    passions = [
         'Music',
         'Snowboarding',
         'Reading Pelevins books',
         'Gathering many good ideas into one great idea'
     ]
 
-    @staticmethod
-    def get_city():
+    @independent_method
+    def home_base():
         return 'Moscow_Russia'
 
-    @staticmethod
-    def ambitions():
+    @independent_method
+    def on_agenda():
         return ['LearnAIandML', 'CreateStartUp', 'LiveinHappiness']
         # Assume 10 more awesome ambitions here  ;)
 
