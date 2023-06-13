@@ -16,23 +16,25 @@
 
  ```python
  class WhoAmI:
- 	user = 'NataAntro'
-		current_work = 'URFU Student, AI/ML Engineer, QA Specialist (Extyl-pro.ru), Metaverse Researcher, Digital artist'
-		hobbies = [
-				'Music',
-				'Snowboarding',
-				'Reading Pelevins books'
-				'Gathering many good ideas into one great idea'
-			]
-	
-	def getCity():
-		return Moscow_Russia()
-	
-	def Ambitions():
-		LearnAIandML()
-		CreateStartUp()
-		LiveinHappiness()
-		# Assume 10 more awesome ambitions here  ;)
+    user = 'NataAntro'
+    current_work = ('URFU Student, AI/ML Engineer, QA Specialist (Extyl-pro.ru),'
+                    'Metaverse Researcher, Digital artist')
+    hobbies = [
+        'Music',
+        'Snowboarding',
+        'Reading Pelevins books',
+        'Gathering many good ideas into one great idea'
+    ]
+
+    @staticmethod
+    def get_city():
+        return 'Moscow_Russia'
+
+    @staticmethod
+    def ambitions():
+        return ['LearnAIandML', 'CreateStartUp', 'LiveinHappiness']
+        # Assume 10 more awesome ambitions here  ;)
+
 	
  ```
 
