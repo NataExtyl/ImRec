@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing import image
 
 st.cache_resource()
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def send_to_openai(preds):
