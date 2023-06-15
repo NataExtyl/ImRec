@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing import image
 
 st.cache_resource()
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def send_to_openai(preds):
@@ -26,20 +26,18 @@ def send_to_openai(preds):
     classes = decode_predictions(preds, top=3)[0]
     predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
     prompt = (
-        "Результаты распознавания изображения следующие: " 
+        "Результаты распознавания изображения следующие: "
         + ", ".join(predictions)
-        + " Прокомментируй содержание изображения "
-        "по полученным данным"
-)
+        + " Прокомментируй содержание изображения по полученным данным"
+    )
 
-response = openai.Completion.create(
-    engine="text-davinci-003", 
-    prompt=prompt,
-    max_tokens=1000
-)
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=1000
+    )
 
-
-return response.choices[0].text.strip()
+    return response.choices[0].text.strip()
 
 
 def load_model():
