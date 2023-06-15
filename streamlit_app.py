@@ -27,8 +27,8 @@ def send_to_openai(preds):
     prompt = (
         "Результаты распознавания изображения следующие: "
         + ", ".join(predictions)
-        + " Прокомментируй содержание изображения по полученным данным"
     )
+    prompt += " Прокомментируй содержание изображения по полученным данным"
 
     response = openai.Completion.create(
         engine="text-davinci-003",
@@ -69,7 +69,7 @@ def load_image():
 
     :return: изображение в формате PIL.Image или None, если изображение не было загружено
     """
-    label = 'Выберите изображение для распознавания '
+    label = 'Выберите изображение для распознавания'
     uploaded_file = st.file_uploader(label=label)
     if uploaded_file is not None:
         image_data = uploaded_file.getvalue()
