@@ -15,31 +15,6 @@ st.cache_resource()
 openai.api_key = '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'
 
 
-def send_to_openai(preds):
-    """
-    Эта функция принимает предсказания модели и формирует запрос к OpenAI.
-    Затем возвращает текст, сгенерированный AI.
-
-    :param preds: массив с результатами предсказаний модели
-    :return: строка с текстом, сгенерированным AI
-    """
-    classes = decode_predictions(preds, top=3)[0]
-    predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
-    prompt = (
-        "Результаты распознавания изображения следующие: "
-        + ", ".join(predictions)
-        + " Прокомментируй содержание изображения по полученным данным"
-    )
-
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=1000
-    )
-
-    return response.choices[0].text.strip()
-
-
 def load_model():
     """
     Функция загружает предобученную модель EfficientNetB0 с весами 'imagenet'
@@ -81,6 +56,31 @@ def load_image():
         return Image.open(io.BytesIO(image_data))
     else:
         return None
+
+    
+def send_to_openai(preds):
+    """
+    Эта функция принимает предсказания модели и формирует запрос к OpenAI.
+    Затем возвращает текст, сгенерированный AI.
+
+    :param preds: массив с результатами предсказаний модели
+    :return: строка с текстом, сгенерированным AI
+    """
+    classes = decode_predictions(preds, top=3)[0]
+    predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
+    prompt = (
+        "Результаты распознавания изображения следующие: "
+        + ", ".join(predictions)
+        + " Прокомментируй содержание изображения по полученным данным"
+    )
+
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=1000
+    )
+
+    return response.choices[0].text.strip()
 
 
 def print_predictions(preds):
