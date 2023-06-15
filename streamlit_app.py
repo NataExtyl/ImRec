@@ -76,4 +76,5 @@ if result:
         print_predictions(preds)
         st.write('Комментарий к изображению:')
         st.write(send_to_openai(preds))
+
     st.success('Готово!')
