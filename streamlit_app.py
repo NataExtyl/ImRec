@@ -25,11 +25,10 @@ def send_to_openai(preds):
     """
     classes = decode_predictions(preds, top=3)[0]
     predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
-    prompt = (
+    prompt =
         "Результаты распознавания изображения следующие: "
         + ", ".join(predictions)
         + ". Прокомментируй содержание изображения по полученным данным."
-    )
 
     response = openai.Completion.create(
         engine="text-davinci-003",
