@@ -14,6 +14,7 @@ st.cache_resource()
 
 openai.api_key = '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'
 
+
 def send_to_openai(preds):
     classes = decode_predictions(preds, top=3)[0]
     predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
