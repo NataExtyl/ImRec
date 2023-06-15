@@ -12,20 +12,25 @@ from tensorflow.keras.preprocessing import image
 
 st.cache_resource()
 
-openai.api_key = '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' 
+openai.api_key = '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'
 
 def send_to_openai(preds):
     classes = decode_predictions(preds, top=3)[0]
     predictions = [f"{cl[1]} {cl[2]}" for cl in classes]
-    prompt = "Результаты распознавания изображения следующие: " + ", ".join(predictions) + "Прокомментируй содержание изображения по полученным данным"
+    prompt = (
+        "Результаты распознавания изображения следующие: "
+        + ", ".join(predictions)
+        + " Прокомментируй содержание изображения по полученным данным"
+    )
 
     response = openai.Completion.create(
-      engine="text-davinci-003", 
-      prompt=prompt,
-      max_tokens=1000
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=1000
     )
 
     return response.choices[0].text.strip()
+
 
 def load_model():
     return EfficientNetB0(weights='imagenet')
@@ -57,7 +62,7 @@ def print_predictions(preds):
 
 
 model = load_model()
-st.title('Распознование изображений в облаке STREAMLIT')
+st.title('Распознавание изображений в облаке STREAMLIT')
 st.markdown('Проект по программной инженерии')
 st.text('Антропова Н.Г.')
 
