@@ -10,7 +10,8 @@ from tensorflow.keras.applications.efficientnet import (
 )
 from tensorflow.keras.preprocessing import image
 
-# Устанавливаем ключ API для OpenAI
+st.cache_resource()
+
 openai.api_key = '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'
 
 
@@ -27,8 +28,8 @@ def send_to_openai(preds):
     prompt = (
         "Результаты распознавания изображения следующие: "
         + ", ".join(predictions)
+        + " Прокомментируй содержание изображения по полученным данным"
     )
-    prompt += " Прокомментируй содержание изображения по полученным данным"
 
     response = openai.Completion.create(
         engine="text-davinci-003",
@@ -69,7 +70,7 @@ def load_image():
 
     :return: изображение в формате PIL.Image или None, если изображение не было загружено
     """
-    label = 'Выберите изображение для распознавания'
+    label = 'Выберите изображение для распознавания '
     uploaded_file = st.file_uploader(label=label)
     if uploaded_file is not None:
         image_data = uploaded_file.getvalue()
@@ -90,31 +91,20 @@ def print_predictions(preds):
         st.write(cl[1], cl[2])
 
 
-# Загружаем модель
 model = load_model()
-
-# Настраиваем заголовки для интерфейса Streamlit
 st.title('Распознавание изображений в облаке STREAMLIT')
 st.markdown('Проект по программной инженерии')
 st.text('Антропова Н.Г.')
 
-# Загружаем изображение
 img = load_image()
-
-# Если пользователь нажал кнопку "Распознать изображение"
 result = st.button('Распознать изображение')
 if result:
     with st.spinner('Подождите...'):
-        # Предобрабатываем изображение
         x = preprocess_image(img)
-        # Делаем предсказание
         preds = model.predict(x)
         st.write('Результат:')
-        # Выводим предсказания
         print_predictions(preds)
         st.write('Комментарий к изображению:')
-        # Генерируем и выводим комментарий с помощью AI
         st.write(send_to_openai(preds))
 
-    # Сообщаем пользователю, что обработка завершена
     st.success('Готово!')
