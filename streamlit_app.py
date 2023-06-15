@@ -39,7 +39,7 @@ response = openai.Completion.create(
 )
 
 
-    return response.choices[0].text.strip()
+return response.choices[0].text.strip()
 
 
 def load_model():
